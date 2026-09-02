@@ -1,0 +1,15 @@
+import "./campodeentrada.css";
+
+export function CampoDeEntrada({ children, type = "text", placeholder, name }) {
+  return (
+    <div className="campo-form">
+      <label className="labelFormulario"> {children} </label>
+      <input
+        type={type}
+        className="inputDoFormulario"
+        placeholder={placeholder}
+        name={name}
+      />
+    </div>
+  );
+}

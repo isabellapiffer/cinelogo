@@ -1,0 +1,8 @@
+.banner {
+  background-image: url("../../assets/banner.jpg");
+  background-size: cover;
+  width: 1200px;
+  max-width: 90%;
+  margin: 0 auto;
+  aspect-ratio: 1856 / 576;
+}
