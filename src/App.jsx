@@ -1,5 +1,6 @@
 import "./App.css";
 import { Banner } from "./componentes/Banner";
+import { CardFilme } from "./componentes/CardFilme";
 import { FormularioDeFilme } from "./componentes/FormularioDeFilme";
 import { useState } from "react";
 
@@ -18,6 +19,11 @@ function App() {
       </header>
       <Banner />
       <FormularioDeFilme aoSubmeter={adicionarFilme} />
+      <div className="lista-filmes">
+        {filmes.map(function (filme) {
+          return <CardFilme filme={filme} />;
+        })}
+      </div>
     </main>
   );
 }
