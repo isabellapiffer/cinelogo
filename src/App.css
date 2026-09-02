@@ -14,10 +14,17 @@ header h1 {
 }
 
 .lista-filmes {
-  width: 1200px;
-  max-width: 90%;
-  margin: 0 auto;
+  flex: 1;
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
+}
+
+.conteudo {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  width: 1400px;
+  max-width: 90%;
+  margin: 0 auto;
 }

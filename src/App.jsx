@@ -18,11 +18,13 @@ function App() {
         <h1>CINELOG</h1>
       </header>
       <Banner />
-      <FormularioDeFilme aoSubmeter={adicionarFilme} />
-      <div className="lista-filmes">
-        {filmes.map(function (filme) {
-          return <CardFilme filme={filme} />;
-        })}
+      <div className="conteudo">
+        <FormularioDeFilme aoSubmeter={adicionarFilme} />
+        <div className="lista-filmes">
+          {filmes.map(function (filme) {
+            return <CardFilme filme={filme} />;
+          })}
+        </div>
       </div>
     </main>
   );
