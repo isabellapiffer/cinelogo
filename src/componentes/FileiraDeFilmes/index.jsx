@@ -2,7 +2,7 @@ import { CardFilme } from "../CardFilme";
 import { useRef, useState, useEffect } from "react";
 import "./fileiradefilme.css";
 
-export function FileiraDeFilmes({ titulo, filmes }) {
+export function FileiraDeFilmes({ titulo, filmes, aoDeletar }) {
   const fileiraRef = useRef(null);
   const [podeEsquerda, setPodeEsquerda] = useState(false);
   const [podeDireita, setPodeDireita] = useState(false);
@@ -48,7 +48,9 @@ export function FileiraDeFilmes({ titulo, filmes }) {
 
         <div className="fileira" ref={fileiraRef} onScroll={atualizarSetas}>
           {filmes.map(function (filme) {
-            return <CardFilme filme={filme} key={filme.nome} />;
+            return (
+              <CardFilme filme={filme} aoDeletar={aoDeletar} key={filme.id} />
+            );
           })}
         </div>
 

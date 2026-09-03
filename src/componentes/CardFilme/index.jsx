@@ -8,7 +8,7 @@ import drama from "../../assets/generos/drama.jpg";
 import ficcao from "../../assets/generos/ficcao.jpg";
 import outros from "../../assets/generos/outros.jpg";
 
-export function CardFilme({ filme }) {
+export function CardFilme({ filme, aoDeletar }) {
   const postersPorGenero = {
     Ação: acao,
     Besteirol: besteirol,
@@ -23,11 +23,14 @@ export function CardFilme({ filme }) {
 
   return (
     <div className="card">
+      <button className="btn-deletar" onClick={() => aoDeletar(filme.id)}>
+        X
+      </button>
       <img
         src={imagemDoCard}
         alt={filme.nome}
         onError={(e) => {
-          e.target.onError = null;
+          e.target.onerror = null;
           e.target.src = postersPorGenero[filme.genero] || outros;
         }}
       />

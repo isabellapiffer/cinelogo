@@ -1,9 +1,9 @@
 import { BotaoEnviar } from "../Botao";
 import "./formulariodefilme.css";
-import { CampoDeEntrada } from "../CampoDeEntrada";
 import { ListaSuspensa } from "../ListaSuspensa";
 import { BuscaFilme } from "../BuscaFilme";
 import { useState } from "react";
+import { generoDoFilme } from "../../servicos/tmdb";
 
 export function FormularioDeFilme({ aoSubmeter, generos }) {
   const plataformas = [
@@ -18,38 +18,78 @@ export function FormularioDeFilme({ aoSubmeter, generos }) {
   const [filmeSelecionado, setFilmeSelecionado] = useState(null);
   const [texto, setTexto] = useState("");
 
+  const [plataforma, setPlataforma] = useState("");
+  const [genero, setGenero] = useState("");
+  const [cia, setCia] = useState("");
+  const [resetKey, setResetKey] = useState(0);
+
+  function aoSelecionarFilme(filme) {
+    setFilmeSelecionado(filme);
+    if (filme) {
+      setGenero(generoDoFilme(filme.genre_ids));
+    }
+  }
+
   function aoFormSubmetido(formData) {
     const nome = filmeSelecionado ? filmeSelecionado.title : texto.trim();
     if (nome === "") return;
 
-    const poster = filmeSelecionado
+    const poster = filmeSelecionado?.poster_path
       ? `https://image.tmdb.org/t/p/w500${filmeSelecionado.poster_path}`
       : "";
 
     const filme = {
       nome,
       poster,
-      plataforma: formData.get("plataforma"),
-      genero: formData.get("genero"),
-      cias: formData.get("cia"),
+      plataforma: plataforma,
+      genero: genero,
+      cias: cia,
     };
     aoSubmeter(filme);
+
+    setFilmeSelecionado(null);
+    setTexto("");
+    setPlataforma("");
+    setGenero("");
+    setCia("");
+
+    setResetKey(resetKey + 1);
   }
 
   return (
     <form className="formulario" action={aoFormSubmetido}>
       <h2>Adicione um filme à sua lista</h2>
 
-      <BuscaFilme aoSelecionar={setFilmeSelecionado} aoMudarTexto={setTexto} />
+      <BuscaFilme
+        aoSelecionar={aoSelecionarFilme}
+        aoMudarTexto={setTexto}
+        key={resetKey}
+      />
 
       <div className="campo">
-        <ListaSuspensa name="plataforma" itens={plataformas}>
+        <ListaSuspensa
+          name="plataforma"
+          itens={plataformas}
+          valor={plataforma}
+          aoMudar={(e) => setPlataforma(e.target.value)}
+        >
           Plataforma:
         </ListaSuspensa>
-        <ListaSuspensa name="genero" itens={generos} obrigatorio>
+        <ListaSuspensa
+          name="genero"
+          itens={generos}
+          obrigatorio
+          valor={genero}
+          aoMudar={(e) => setGenero(e.target.value)}
+        >
           Gênero:
         </ListaSuspensa>
-        <ListaSuspensa name="cia" itens={cias}>
+        <ListaSuspensa
+          name="cia"
+          itens={cias}
+          valor={cia}
+          aoMudar={(e) => setCia(e.target.value)}
+        >
           Assistir com:
         </ListaSuspensa>
       </div>

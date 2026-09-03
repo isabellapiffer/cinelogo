@@ -1,11 +1,12 @@
 import { buscarFilmes } from "../../servicos/tmdb";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import "./buscafilme.css";
 
 export function BuscaFilme({ aoSelecionar, aoMudarTexto }) {
   const [termo, setTermo] = useState("");
   const [resultados, setResultados] = useState([]);
-
   const [ignorarBusca, setIgnorarBusca] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     if (ignorarBusca) return;
@@ -20,6 +21,19 @@ export function BuscaFilme({ aoSelecionar, aoMudarTexto }) {
     return () => clearTimeout(timer);
   }, [termo, ignorarBusca]);
 
+  useEffect(() => {
+    function aoClicarFora(evento) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(evento.target)
+      ) {
+        setResultados([]);
+      }
+    }
+    document.addEventListener("mousedown", aoClicarFora);
+    return () => document.removeEventListener("mousedown", aoClicarFora);
+  }, []);
+
   function selecionar(filme) {
     aoSelecionar(filme);
     setTermo(filme.title);
@@ -28,7 +42,7 @@ export function BuscaFilme({ aoSelecionar, aoMudarTexto }) {
   }
 
   return (
-    <div className="busca-filme">
+    <div className="busca-filme" ref={containerRef}>
       <label className="labelFormulario">Nome:</label>
       <div className="busca-linha">
         <input
@@ -44,15 +58,17 @@ export function BuscaFilme({ aoSelecionar, aoMudarTexto }) {
         />
       </div>
 
-      <ul className="busca-resultados">
-        {resultados.map((filme) => (
-          <li key={filme.id} onClick={() => selecionar(filme)}>
-            <span>
-              {filme.title} ({filme.release_date?.slice(0, 4)})
-            </span>
-          </li>
-        ))}
-      </ul>
+      {resultados.length > 0 && (
+        <ul className="busca-resultados">
+          {resultados.map((filme) => (
+            <li key={filme.id} onClick={() => selecionar(filme)}>
+              <span>
+                {filme.title} ({filme.release_date?.slice(0, 4)})
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

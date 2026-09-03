@@ -1,12 +1,18 @@
 import "./App.css";
 import { Banner } from "./componentes/Banner";
 import { FormularioDeFilme } from "./componentes/FormularioDeFilme";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileiraDeFilmes } from "./componentes/FileiraDeFilmes";
-import { buscarFilmes } from "./servicos/tmdb";
 
 function App() {
-  const [filmes, setFilmes] = useState([]);
+  const [filmes, setFilmes] = useState(() => {
+    try {
+      const salvos = localStorage.getItem("cinelogo:filmes");
+      return salvos ? JSON.parse(salvos) : [];
+    } catch {
+      return [];
+    }
+  });
 
   const generos = [
     "Ação",
@@ -20,9 +26,17 @@ function App() {
   ];
 
   function adicionarFilme(filme) {
-    setFilmes([...filmes, filme]);
+    const novoFilme = { ...filme, id: crypto.randomUUID() };
+    setFilmes([...filmes, novoFilme]);
   }
-  console.log(filmes);
+
+  function deletarFilme(id) {
+    setFilmes(filmes.filter((filme) => filme.id !== id));
+  }
+
+  useEffect(() => {
+    localStorage.setItem("cinelogo:filmes", JSON.stringify(filmes));
+  }, [filmes]);
 
   return (
     <main>
@@ -46,6 +60,7 @@ function App() {
               <FileiraDeFilmes
                 titulo={genero}
                 filmes={filmesDoGenero}
+                aoDeletar={deletarFilme}
                 key={genero}
               />
             );

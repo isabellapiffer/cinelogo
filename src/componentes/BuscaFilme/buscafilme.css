@@ -1,0 +1,32 @@
+.busca-filme {
+  position: relative;
+}
+
+.busca-resultados {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+
+  max-height: 260px;
+  overflow-y: auto;
+
+  background-color: #1c1f26;
+  border: 1px solid #3a3d45;
+  border-radius: 6px;
+}
+
+.busca-resultados li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.busca-resultados li:hover {
+  background-color: #2a2e37;
+}

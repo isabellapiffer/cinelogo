@@ -1,12 +1,20 @@
 import "./listasuspensa.css";
 
-export function ListaSuspensa({ children, itens, name, obrigatorio }) {
+export function ListaSuspensa({
+  children,
+  itens,
+  name,
+  obrigatorio,
+  valor,
+  aoMudar,
+}) {
   return (
     <div className="campo-form">
       <label className="labelFormulario"> {children} </label>
       <select
         className="opcoesFormulario"
-        defaultValue=""
+        value={valor}
+        onChange={aoMudar}
         name={name}
         required={obrigatorio}
       >
