@@ -1,5 +1,8 @@
 .busca-filme {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .busca-resultados {

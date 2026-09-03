@@ -60,13 +60,12 @@ export function FormularioDeFilme({ aoSubmeter, generos }) {
     <form className="formulario" action={aoFormSubmetido}>
       <h2>Adicione um filme à sua lista</h2>
 
-      <BuscaFilme
-        aoSelecionar={aoSelecionarFilme}
-        aoMudarTexto={setTexto}
-        key={resetKey}
-      />
-
       <div className="campo">
+        <BuscaFilme
+          aoSelecionar={aoSelecionarFilme}
+          aoMudarTexto={setTexto}
+          key={resetKey}
+        />
         <ListaSuspensa
           name="plataforma"
           itens={plataformas}

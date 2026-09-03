@@ -20,3 +20,9 @@
   letter-spacing: 2px;
   margin: 0 0 8px;
 }
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
