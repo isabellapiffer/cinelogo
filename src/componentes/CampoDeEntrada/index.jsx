@@ -1,6 +1,12 @@
 import "./campodeentrada.css";
 
-export function CampoDeEntrada({ children, type = "text", placeholder, name }) {
+export function CampoDeEntrada({
+  children,
+  type = "text",
+  placeholder,
+  name,
+  obrigatorio,
+}) {
   return (
     <div className="campo-form">
       <label className="labelFormulario"> {children} </label>
@@ -9,6 +15,7 @@ export function CampoDeEntrada({ children, type = "text", placeholder, name }) {
         className="inputDoFormulario"
         placeholder={placeholder}
         name={name}
+        required={obrigatorio}
       />
     </div>
   );

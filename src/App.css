@@ -1,30 +1,62 @@
 body {
-  background-color: #10101a;
+  background-color: var(--fundo);
+  color: var(--texto);
 }
 
 header {
   display: flex;
   justify-content: center;
+  padding: 40px 0;
 }
 
 header h1 {
-  color: #f5b301;
-  letter-spacing: 20px;
+  color: var(--neon-rosa);
+  letter-spacing: 40px;
   margin: 0;
+  text-shadow:
+    0 0 12px var(--neon-rosa),
+    0 0 30px rgba(255, 46, 136, 0.5);
+  font-size: 35px;
 }
 
 .lista-filmes {
   flex: 1;
   display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
+  gap: 40px;
+  flex-direction: column;
+  min-width: 0;
 }
 
-.conteudo {
+.lista-filmes section {
+  width: 100%;
+}
+
+.colunas {
   display: flex;
   gap: 32px;
   align-items: flex-start;
-  width: 1400px;
-  max-width: 90%;
-  margin: 0 auto;
+  margin: 50px 130px;
+  box-sizing: border-box;
+}
+
+.colunas h2 {
+  color: aliceblue;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+.fileira {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 14px;
+  scrollbar-width: none;
+}
+
+.fileira > * {
+  flex: 0 0 auto;
+}
+
+.fileira::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
 }

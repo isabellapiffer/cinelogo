@@ -1,8 +1,17 @@
 * {
   box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 body {
   margin: 0;
+}
+
+:root {
+  --fundo: #0b0610;
+  --superficie: #121016;
+  --neon-rosa: #ff2e88;
+  --neon-ciano: #00e5ff;
+  --texto: #f5f0ff;
+  --texto-suave: #a894c4;
 }

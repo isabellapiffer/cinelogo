@@ -3,23 +3,12 @@ import "./formulariodefilme.css";
 import { CampoDeEntrada } from "../CampoDeEntrada";
 import { ListaSuspensa } from "../ListaSuspensa";
 
-export function FormularioDeFilme({ aoSubmeter }) {
+export function FormularioDeFilme({ aoSubmeter, generos }) {
   const plataformas = [
     "Netflix",
     "Prime Video",
     "Disney+",
     "AdoroCinema",
-    "Outros",
-  ];
-
-  const generos = [
-    "Ação",
-    "Besteirol",
-    "Comédia",
-    "Terror",
-    "Romance",
-    "Drama",
-    "Ficção Científica",
     "Outros",
   ];
 
@@ -39,7 +28,7 @@ export function FormularioDeFilme({ aoSubmeter }) {
     <form className="formulario" action={aoFormSubmetido}>
       <h2>Adicione um filme à sua lista</h2>
       <div className="campo">
-        <CampoDeEntrada name="nome" placeholder="Digite o nome">
+        <CampoDeEntrada name="nome" placeholder="Digite o nome" obrigatorio>
           Nome:
         </CampoDeEntrada>
         <CampoDeEntrada name="poster" placeholder="https://....">
@@ -48,7 +37,7 @@ export function FormularioDeFilme({ aoSubmeter }) {
         <ListaSuspensa name="plataforma" itens={plataformas}>
           Plataforma:
         </ListaSuspensa>
-        <ListaSuspensa name="genero" itens={generos}>
+        <ListaSuspensa name="genero" itens={generos} obrigatorio>
           Gênero:
         </ListaSuspensa>
         <ListaSuspensa name="cia" itens={cias}>

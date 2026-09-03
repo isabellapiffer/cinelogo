@@ -1,8 +1,16 @@
 .banner {
-  background-image: url("../../assets/banner.jpg");
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgba(11, 6, 16, 0.5),
+      var(--fundo)
+    ),
+    url("../../assets/banner.jpg");
   background-size: cover;
+  background-position: center;
   width: 90%;
   height: 500px;
-  background-position: center;
   margin: 0 auto;
+  border-radius: 12px;
 }

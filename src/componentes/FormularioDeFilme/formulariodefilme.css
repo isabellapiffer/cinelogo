@@ -2,22 +2,21 @@
   width: 560px;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  margin-top: 50px;
-  color: #f0f4f8;
-  background-color: #1c1f26;
+  border-radius: 12px;
+  color: var(--texto);
+  background-color: var(--superficie);
+  border: 1px solid rgba(255, 46, 136, 0.25);
   font-size: 16px;
-  padding: 24px;
-  gap: 16px;
+  padding: 32px;
+  gap: 20px;
   flex-shrink: 0;
 }
 
 .formulario h2 {
   text-align: center;
-}
-
-.campo {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  text-transform: uppercase;
+  color: var(--neon-ciano);
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
 }
