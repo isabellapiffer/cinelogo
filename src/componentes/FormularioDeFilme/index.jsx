@@ -2,6 +2,8 @@ import { BotaoEnviar } from "../Botao";
 import "./formulariodefilme.css";
 import { CampoDeEntrada } from "../CampoDeEntrada";
 import { ListaSuspensa } from "../ListaSuspensa";
+import { BuscaFilme } from "../BuscaFilme";
+import { useState } from "react";
 
 export function FormularioDeFilme({ aoSubmeter, generos }) {
   const plataformas = [
@@ -13,27 +15,34 @@ export function FormularioDeFilme({ aoSubmeter, generos }) {
   ];
 
   const cias = ["Família", "Amigos", "Namorado"];
+  const [filmeSelecionado, setFilmeSelecionado] = useState(null);
+  const [texto, setTexto] = useState("");
 
   function aoFormSubmetido(formData) {
+    const nome = filmeSelecionado ? filmeSelecionado.title : texto.trim();
+    if (nome === "") return;
+
+    const poster = filmeSelecionado
+      ? `https://image.tmdb.org/t/p/w500${filmeSelecionado.poster_path}`
+      : "";
+
     const filme = {
-      nome: formData.get("nome"),
-      poster: formData.get("poster"),
+      nome,
+      poster,
       plataforma: formData.get("plataforma"),
       genero: formData.get("genero"),
       cias: formData.get("cia"),
     };
     aoSubmeter(filme);
   }
+
   return (
     <form className="formulario" action={aoFormSubmetido}>
       <h2>Adicione um filme à sua lista</h2>
+
+      <BuscaFilme aoSelecionar={setFilmeSelecionado} aoMudarTexto={setTexto} />
+
       <div className="campo">
-        <CampoDeEntrada name="nome" placeholder="Digite o nome" obrigatorio>
-          Nome:
-        </CampoDeEntrada>
-        <CampoDeEntrada name="poster" placeholder="https://....">
-          Pôster(url):
-        </CampoDeEntrada>
         <ListaSuspensa name="plataforma" itens={plataformas}>
           Plataforma:
         </ListaSuspensa>

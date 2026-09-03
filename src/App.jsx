@@ -3,6 +3,7 @@ import { Banner } from "./componentes/Banner";
 import { FormularioDeFilme } from "./componentes/FormularioDeFilme";
 import { useState } from "react";
 import { FileiraDeFilmes } from "./componentes/FileiraDeFilmes";
+import { buscarFilmes } from "./servicos/tmdb";
 
 function App() {
   const [filmes, setFilmes] = useState([]);
