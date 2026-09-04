@@ -14,3 +14,9 @@
   margin: 0 auto;
   border-radius: 12px;
 }
+
+@media (max-width: 768px) {
+  .banner {
+    height: 220px;
+  }
+}
