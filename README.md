@@ -4,11 +4,7 @@ Aplicação web para organizar os filmes que você quer assistir. Busque um film
 
 **🔗 Acesse:** https://cinelogo.vercel.app
 
-<!-- TODO: substitua pela imagem real do app.
-     Dica: tire um print, arraste o arquivo para dentro de uma issue do GitHub,
-     copie o link gerado e cole aqui. Um GIF curto funciona ainda melhor. -->
-
-![Tela do Cinelogo](./public/preview.png)
+<img width="1888" height="911" alt="Captura de tela 2026-09-09 121131" src="https://github.com/user-attachments/assets/67498bcf-7760-4d54-8a6a-e3f00c63dfe2" />
 
 ---
 
