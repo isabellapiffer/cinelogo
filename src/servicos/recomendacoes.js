@@ -1,5 +1,13 @@
 import { buscarFilmes } from "./tmdb";
 
+async function acharFilme({ titulo, ano }) {
+  const comAno = await buscarFilmes(titulo, ano);
+  if (comAno.length > 0) return comAno[0];
+
+  const semAno = await buscarFilmes(titulo);
+  return semAno[0];
+}
+
 export async function recomendarFilmes(pedido) {
   const resposta = await fetch(
     `/api/recomendar?pedido=${encodeURIComponent(pedido)}`
@@ -10,8 +18,7 @@ export async function recomendarFilmes(pedido) {
     throw new Error(dados.erro);
   }
 
-  const buscas = dados.filmes.map((nome) => buscarFilmes(nome));
-  const resultados = await Promise.all(buscas);
+  const resultados = await Promise.all(dados.filmes.map(acharFilme));
 
-  return resultados.map((lista) => lista[0]).filter(Boolean);
+  return resultados.filter(Boolean);
 }

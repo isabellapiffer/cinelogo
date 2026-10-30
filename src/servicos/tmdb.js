@@ -1,8 +1,9 @@
 const TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 const BASE_URL = "https://api.themoviedb.org/3";
 
-export async function buscarFilmes(termo) {
-  const url = `${BASE_URL}/search/movie?query=${encodeURIComponent(termo)}&language=pt-BR`;
+export async function buscarFilmes(termo, ano) {
+  const filtroAno = ano ? `&primary_release_year=${ano}` : "";
+  const url = `${BASE_URL}/search/movie?query=${encodeURIComponent(termo)}&language=pt-BR${filtroAno}`;
 
   const resposta = await fetch(url, {
     headers: {
