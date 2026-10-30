@@ -27,9 +27,45 @@
   gap: 16px;
 }
 
+.formulario-abrir {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .formulario {
     width: 100%;
-    padding: 20px;
+    padding: 0 20px 20px;
+  }
+
+  .formulario h2 {
+    display: none;
+  }
+
+  .formulario-recolhido {
+    padding: 0;
+    gap: 0;
+  }
+
+  .formulario-recolhido > :not(.formulario-abrir) {
+    display: none;
+  }
+
+  .formulario-abrir {
+    display: block;
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    padding: 16px;
+    border: none;
+    background: transparent;
+    color: var(--neon-ciano);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .formulario-recolhido .formulario-abrir {
+    width: 100%;
+    margin: 0;
   }
 }

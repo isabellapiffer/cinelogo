@@ -1,3 +1,7 @@
+.recomendacao-bloco {
+  display: contents;
+}
+
 .botao-ia {
   position: fixed;
   right: 24px;
@@ -18,6 +22,10 @@
 .botao-ia:hover {
   background: var(--neon-rosa);
   color: white;
+}
+
+.botao-ia-longo {
+  display: none;
 }
 
 .recomendacao {
@@ -102,13 +110,54 @@
 }
 
 @media (max-width: 768px) {
+  .recomendacao-bloco {
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(255, 46, 136, 0.25);
+    border-radius: 12px;
+    background: var(--superficie);
+  }
+
   .botao-ia {
-    right: 16px;
-    bottom: 16px;
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    border: none;
+    border-radius: 0;
+    color: var(--neon-ciano);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: none;
+  }
+
+  .botao-ia:hover {
+    background: var(--superficie);
+    color: var(--neon-ciano);
+  }
+
+  .botao-ia-curto {
+    display: none;
+  }
+
+  .botao-ia-longo {
+    display: inline;
   }
 
   .recomendacao {
-    right: 16px;
-    bottom: 78px;
+    position: static;
+    width: 100%;
+    max-height: none;
+    overflow-y: visible;
+    padding-top: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .recomendacao h2 {
+    display: none;
   }
 }

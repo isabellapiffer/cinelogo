@@ -5,7 +5,12 @@ import { BuscaFilme } from "../BuscaFilme";
 import { useState } from "react";
 import { generoDoFilme } from "../../servicos/tmdb";
 
-export function FormularioDeFilme({ aoSubmeter, generos }) {
+export function FormularioDeFilme({
+  aoSubmeter,
+  generos,
+  aberto,
+  aoAlternar,
+}) {
   const plataformas = [
     "Netflix",
     "Prime Video",
@@ -57,7 +62,19 @@ export function FormularioDeFilme({ aoSubmeter, generos }) {
   }
 
   return (
-    <form className="formulario" action={aoFormSubmetido}>
+    <form
+      className={`formulario ${aberto ? "" : "formulario-recolhido"}`}
+      action={aoFormSubmetido}
+    >
+      <button
+        type="button"
+        className="formulario-abrir"
+        aria-expanded={aberto}
+        onClick={aoAlternar}
+      >
+        Adicione um filme à sua lista {aberto ? "▴" : "▾"}
+      </button>
+
       <h2>Adicione um filme à sua lista</h2>
 
       <div className="campo">

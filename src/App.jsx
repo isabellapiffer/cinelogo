@@ -15,6 +15,19 @@ function App() {
     }
   });
 
+  const [iaAberta, setIaAberta] = useState(false);
+  const [formularioAberto, setFormularioAberto] = useState(false);
+
+  function alternarIA() {
+    setIaAberta(!iaAberta);
+    setFormularioAberto(false);
+  }
+
+  function alternarFormulario() {
+    setFormularioAberto(!formularioAberto);
+    setIaAberta(false);
+  }
+
   const generos = [
     "Ação",
     "Besteirol",
@@ -45,9 +58,18 @@ function App() {
         <h1>CINELOGO</h1>
       </header>
       <Banner />
-      <RecomendacaoIA aoAdicionar={adicionarFilme} />
       <div className="colunas">
-        <FormularioDeFilme aoSubmeter={adicionarFilme} generos={generos} />
+        <FormularioDeFilme
+          aoSubmeter={adicionarFilme}
+          generos={generos}
+          aberto={formularioAberto}
+          aoAlternar={alternarFormulario}
+        />
+        <RecomendacaoIA
+          aoAdicionar={adicionarFilme}
+          aberto={iaAberta}
+          aoAlternar={alternarIA}
+        />
         <div className="lista-filmes">
           {generos.map(function (genero) {
             const filmesDoGenero = filmes.filter(function (filme) {

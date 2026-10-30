@@ -75,3 +75,21 @@
   font-weight: 700;
   line-height: 125%;
 }
+
+@media (max-width: 768px) {
+  .card {
+    width: 170px;
+  }
+
+  .card .conteudo {
+    padding: 12px;
+  }
+
+  .card .titulo {
+    font-size: 15px;
+  }
+
+  .card .cia {
+    font-size: 12px;
+  }
+}

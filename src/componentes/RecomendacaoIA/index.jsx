@@ -3,8 +3,7 @@ import { recomendarFilmes } from "../../servicos/recomendacoes";
 import { generoDoFilme } from "../../servicos/tmdb";
 import "./recomendacaoia.css";
 
-export function RecomendacaoIA({ aoAdicionar }) {
-  const [aberto, setAberto] = useState(false);
+export function RecomendacaoIA({ aoAdicionar, aberto, aoAlternar }) {
   const [pedido, setPedido] = useState("");
   const [sugestoes, setSugestoes] = useState([]);
   const [carregando, setCarregando] = useState(false);
@@ -75,7 +74,19 @@ export function RecomendacaoIA({ aoAdicionar }) {
   }
 
   return (
-    <>
+    <div className="recomendacao-bloco">
+      <button
+        className="botao-ia"
+        aria-label={aberto ? "Fechar sugestões da IA" : "Abrir sugestões da IA"}
+        aria-expanded={aberto}
+        onClick={aoAlternar}
+      >
+        <span className="botao-ia-curto">{aberto ? "×" : "IA"}</span>
+        <span className="botao-ia-longo">
+          Peça uma sugestão à IA {aberto ? "▴" : "▾"}
+        </span>
+      </button>
+
       {aberto && (
         <section className="recomendacao">
           <h2>Peça uma sugestão à IA</h2>
@@ -123,14 +134,6 @@ export function RecomendacaoIA({ aoAdicionar }) {
           </div>
         </section>
       )}
-
-      <button
-        className="botao-ia"
-        aria-label={aberto ? "Fechar sugestões da IA" : "Abrir sugestões da IA"}
-        onClick={() => setAberto(!aberto)}
-      >
-        {aberto ? "×" : "IA"}
-      </button>
-    </>
+    </div>
   );
 }
