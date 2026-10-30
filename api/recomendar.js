@@ -26,6 +26,7 @@ export default async function handler(req, res) {
   });
 
   if (!resposta.ok) {
+    console.error("Erro do Gemini:", resposta.status, await resposta.text());
     return res.status(502).json({ erro: "A IA não respondeu. Tente de novo." });
   }
 
