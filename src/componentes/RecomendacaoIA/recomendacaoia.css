@@ -1,0 +1,67 @@
+.recomendacao {
+  margin: 50px 130px 0;
+}
+
+.recomendacao h2 {
+  color: aliceblue;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+.recomendacao form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.recomendacao input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--neon-rosa);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--texto);
+}
+
+.recomendacao button {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--neon-rosa);
+  color: white;
+  cursor: pointer;
+}
+
+.recomendacao button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.recomendacao-erro {
+  color: var(--neon-rosa);
+}
+
+.sugestao {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 150px;
+}
+
+.sugestao img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.sugestao h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .recomendacao {
+    margin: 24px 16px 0;
+  }
+}

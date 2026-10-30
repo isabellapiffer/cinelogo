@@ -3,6 +3,7 @@ import { Banner } from "./componentes/Banner";
 import { FormularioDeFilme } from "./componentes/FormularioDeFilme";
 import { useState, useEffect } from "react";
 import { FileiraDeFilmes } from "./componentes/FileiraDeFilmes";
+import { RecomendacaoIA } from "./componentes/RecomendacaoIA";
 
 function App() {
   const [filmes, setFilmes] = useState(() => {
@@ -44,6 +45,7 @@ function App() {
         <h1>CINELOGO</h1>
       </header>
       <Banner />
+      <RecomendacaoIA aoAdicionar={adicionarFilme} />
       <div className="colunas">
         <FormularioDeFilme aoSubmeter={adicionarFilme} generos={generos} />
         <div className="lista-filmes">
