@@ -18,14 +18,11 @@ Interprete o pedido assim:
 Para cada filme, responda com o título original e o ano de lançamento.`;
 }
 
-export default async function handler(req, res) {
-  const { pedido } = req.query;
+// O Gemini responde 503 quando está sobrecarregado. Nesse caso, tenta de novo.
+const TENTATIVAS = 3;
 
-  if (!pedido) {
-    return res.status(400).json({ erro: "Descreva o que você quer assistir." });
-  }
-
-  try {
+async function chamarGemini(pedido) {
+  for (let tentativa = 1; ; tentativa++) {
     const resposta = await fetch(URL_GEMINI, {
       method: "POST",
       signal: AbortSignal.timeout(25000),
@@ -52,6 +49,22 @@ export default async function handler(req, res) {
         },
       }),
     });
+
+    if (resposta.status !== 503 || tentativa === TENTATIVAS) return resposta;
+
+    await new Promise((esperar) => setTimeout(esperar, 1000));
+  }
+}
+
+export default async function handler(req, res) {
+  const { pedido } = req.query;
+
+  if (!pedido) {
+    return res.status(400).json({ erro: "Descreva o que você quer assistir." });
+  }
+
+  try {
+    const resposta = await chamarGemini(pedido);
 
     if (!resposta.ok) {
       console.error("Erro do Gemini:", resposta.status, await resposta.text());
